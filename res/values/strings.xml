@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, PixelArt!</string>
-    <string name="app_name">Pixelesque</string>
+    <string name="app_name">PixelesquePlus</string>
     
     <string name="new_art_title">New Pixel Art</string>
     
@@ -52,8 +52,8 @@
         <string name="custombg_failed">Import Background Failed!</string>
         
         
-    <string name="about_title">About Pixelesque</string>
+    <string name="about_title">About PixelesquePlus</string>
     <string name="about_button_market">Market</string>
     <string name="about_button_ok">Ok</string>
-    <string name="about">Pixelesque is made by &lt;a href=&quot;http://rjmarsan.com&quot;&gt;RJ Marsan&lt;/a&gt;.  It\'s 100% ad &amp; cost free, and &lt;a href=&quot;http://github.com/rjmarsan/Pixelesque&quot;&gt;open source&lt;/a&gt;.</string>
+    <string name="about">PixelesquePlus is a fork of &lt;a href=&quot;http://github.com/rjmarsan/Pixelesque&quot;&gt;Pixelesque&lt;/a&gt; originaly made by RJ Marsan.  It\'s 100% ad &amp; cost free, and &lt;a href=&quot;http://github.com/placidoproject/PixelesquePlus&quot;&gt;open source&lt;/a&gt;.</string>
 </resources>
