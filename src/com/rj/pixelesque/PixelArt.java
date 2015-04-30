@@ -373,13 +373,20 @@ public class PixelArt {
 //	public void eraseColor(int x, int y) {
 //		setColor(x,y,Color.TRANSPARENT, false);
 //	}
-	public void setColor(int x, int y, int color, boolean addToHistory) {
-		if (isValid(x,y)) {
-			workingdata[x*height+y] = color;
-			if (addToHistory == true) history.add();
-		}
-		if (drawer != null) drawer.scheduleRedraw();
-	}
+    public void setColor(int x, int y, int color, boolean addToHistory) {
+        if (isValid(x,y)) {
+            workingdata[x*height+y] = color;
+            if (addToHistory == true) history.add();
+        }
+        if (drawer != null) drawer.scheduleRedraw();
+    }
+
+    public int getColor(int x, int y) {
+        if (isValid(x,y)) {
+            return workingdata[x*height+y];
+        }
+        return 0;
+    }
 	
 	public void rectangle(int x, int y, int width, int height, int color) {
 		Log.d("PixelData", "Rectangle: x"+x+" y:"+y+" width:"+width+" height:"+height+" color:"+color+" ");

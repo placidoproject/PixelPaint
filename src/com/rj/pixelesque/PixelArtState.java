@@ -13,6 +13,8 @@ public class PixelArtState {
 	public final static int CIRCLE_FILL = 60;
 	public final static int BUCKET = 7;
 	public final static int DRAW = 5;
+    public final static int PICKER = 80;
+    public final static int MOVE = 90;
 	
 	public int mode = DRAW;
 	

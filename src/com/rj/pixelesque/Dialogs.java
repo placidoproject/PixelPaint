@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.EditText;
@@ -245,6 +246,60 @@ public class Dialogs {
 		p.startActivityForResult(i, PixelArtEditor.IMAGE_ACTIVITY); 
 	}
 
-	
+    public static void showZoomDialog(final PixelArtEditor p) {
+        Log.d("PixelArt", "alertz shownew");
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(p);
+        builder.setTitle(R.string.zoom_title);
+        LinearLayout layout = new LinearLayout(p);
+        layout.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        layout.setGravity(Gravity.CENTER);
+        final NumberPicker pickerx = new NumberPicker(p);
+        final TextView text = new TextView(p);
+        final NumberPicker pickery = new NumberPicker(p);
+        pickerx.setRange(1, 64);
+        pickery.setRange(1, 64);
+        pickerx.setCurrent(p.art.width);
+        pickery.setCurrent(p.art.height);
+        text.setText("x");
+        text.setTextSize(30);
+        layout.addView(pickerx);
+        layout.addView(text);
+        layout.addView(pickery);
+
+        builder.setView(layout);
+
+        builder.setPositiveButton(R.string.zoom_button_set, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                int x = pickerx.getCurrent();
+                int y = pickery.getCurrent();
+                //p.newArt(x, y);
+
+                // ToDo - zoom tool needs to consider margins(for pixelarts that are too thin)
+                if (p.art.getWidth(p) < p.art.getWidth(p)) {
+                    Log.d("PixelArt", "editor w:" + p.width + " pixelart w:" + p.art.width);
+                    float zx = ((float) p.width / (((float) p.width / (float) p.art.width) * (float) x));
+                    Log.d("PixelArt", "x:" + x + " zoom x:" + zx + " scale:" + p.art.scale);
+                    p.art.scale = zx;
+                } else {
+                    Log.d("PixelArt", "editor h:" + p.height + " pixelart h:" + p.art.height);
+                    float zy = ((float) p.height / (((float) p.height / (float) p.art.height) * (float) y));
+                    Log.d("PixelArt", "y:" + y + " zoom y:" + zy + " scale:" + p.art.scale);
+                    p.art.scale = zy;
+                }
+                p.scheduleRedraw();
+            }
+        });
+        builder.setNegativeButton(R.string.zoom_button_cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog alert = builder.create();
+        alert.show();
+
+        Log.d("PixelArt", "alertz shownew");
+    }
 	
 }

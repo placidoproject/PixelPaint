@@ -2,6 +2,7 @@ package com.rj.pixelesque;
 
 import java.io.File;
 
+import de.devmil.common.ui.color.ColorSelectorDialog;
 import processing.core.PApplet;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -238,6 +239,9 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	@Override
 	public void touchDown(Cursor c) {
 		if (art == null || state == null) return;
+        if (art.shapeeditor.factory != null && (state.mode == PixelArtState.MOVE || state.mode == PixelArtState.PICKER)) {
+            art.shapeeditor.factory = null;
+        }
 		if (state.mode == PixelArtState.DRAW) {
 			art.shapeeditor.factory = penFactory;
 		} else if (state.mode == PixelArtState.ERASER) {
@@ -252,7 +256,10 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 			art.shapeeditor.factory = lineFactory;
 		} else if (state.mode == PixelArtState.BUCKET) {
 			art.shapeeditor.factory = bucketFactory;
-		}
+		} else if (state.mode == PixelArtState.PICKER) {
+            int[] cords = art.getDataCoordsFromXY(this,c.currentPoint.x, c.currentPoint.y);
+            state.selectedColor = art.getColor(cords[0], cords[1]);
+        }
 
 		if (DEBUG) Log.d("Pixelesque", "DOWN "+c);
 		if (mScaleDetector != null && !mScaleDetector.isInProgress() && art.isValid(art.getDataCoordsFromXY(this, c.firstPoint.x, c.firstPoint.y))) {
@@ -292,7 +299,13 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 					moveArt(p1.x - p2.x, p1.y - p2.y);
 				}
 			}
-		} else {
+		} else if (state.mode == PixelArtState.MOVE) {
+            if (c.points.size() > 1) {
+                Point p1 = c.points.get(c.points.size()-1);
+                Point p2 = c.points.get(c.points.size()-2);
+                moveArt(p1.x - p2.x, p1.y - p2.y);
+            }
+        } else {
 			if (mScaleDetector.isInProgress()) {
 				art.shapeeditor.cancelCursor(c);
 			}
@@ -581,6 +594,9 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		    case com.rj.pixelesque.R.id.main_menu_clear:
 		        clear();
 		        return true;
+            case com.rj.pixelesque.R.id.main_menu_zoom:
+                zoom();
+                return true;
 		    case com.rj.pixelesque.R.id.main_menu_preview:
 		        togglePreview();
 		        return true;
@@ -645,33 +661,36 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 
 		}
 	}
-	
 
-	
+
+    public void zoom() {
+        Dialogs.showZoomDialog(this);
+    }
+
 	public void clear() {
 		art.rectangle(0, 0, art.width-1, art.height-1, Color.TRANSPARENT);
 		buttonbar.updateFromState();
 	}
-	
+
 	public void togglePreview() {
 		art.preview = !art.preview;
 		this.scheduleRedraw();
 	}
-	
+
 	public void toggleGrid() {
 		art.showGrid = !art.showGrid;
 		this.scheduleRedraw();
 	}
-	
+
 	public void importBackground() {
 		Dialogs.showImportBackgroundDialog(this);
 	}
 
-	
+
 	public void shownew() {
 		Dialogs.showNewDialog(this);
 	}
-	
+
 	public void save() {
 		if (art.name == null)
 			saveas();
@@ -681,18 +700,18 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	public void saveas() {
 		Dialogs.showSaveAs(this);
 	}
-	
+
 	public void save(String name) {
 		art.setName(name);
 		new SaveTask(name, -1, -1, art, this).execute();
 	}
-	
-	
+
+
 	public void export() {
 		Dialogs.showExport(this);
 	}
-	
-	
+
+
 	public void export(int longside) {
 		export(longside, null);
 	}

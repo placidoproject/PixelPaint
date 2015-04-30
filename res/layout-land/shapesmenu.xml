@@ -43,4 +43,23 @@
         android:scaleType="centerInside"
         android:src="@drawable/linebutton_bg" />
 
+    <ImageView
+        android:id="@+id/pickermode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/circlemode"
+        android:scaleType="centerInside"
+        android:src="@drawable/pickerbutton_bg" />
+
+    <ImageView
+        android:id="@+id/movemode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/pickermode"
+        android:layout_alignRight="@+id/linemode"
+        android:layout_below="@+id/linemode"
+        android:layout_toRightOf="@+id/pickermode"
+        android:scaleType="centerInside"
+        android:src="@drawable/movebutton_bg" />
+
 </RelativeLayout>

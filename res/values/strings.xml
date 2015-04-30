@@ -9,6 +9,7 @@
     <string name="menu_save">Save</string>
     <string name="menu_open">Open</string>
     <string name="menu_clear">Clear</string>
+    <string name="menu_zoom">Zoom</string>
     <string name="menu_background">Import Background</string>
     <string name="menu_share">Share</string>
     <string name="menu_export">Export</string>
@@ -40,6 +41,10 @@
     <string formatted="false" name="export_size_low">Low (%dx%d)</string>
     <string formatted="false" name="export_size_medium">Medium (%dx%d)</string>
     <string formatted="false" name="export_size_high">High (%dx%d)</string>
+
+    <string name="zoom_title">Pick a size</string>
+    <string name="zoom_button_set">Set Zoom</string>
+    <string name="zoom_button_cancel">Cancel</string>
     
     <string name="exportcustom_title">Pick a size to export to</string>
     <string name="exportcustom_button_export">Export</string>

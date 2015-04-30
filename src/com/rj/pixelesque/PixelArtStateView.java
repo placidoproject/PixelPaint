@@ -29,6 +29,8 @@ public class PixelArtStateView  extends LinearLayout {
 	ImageView circlemode;
 	ImageView linemode;
 	ImageView bucketmode;
+    ImageView pickermode;
+    ImageView movemode;
 	ViewGroup shapeselector;
 	ImageView shapesmode;
 	View shapescontainer;
@@ -98,6 +100,20 @@ public class PixelArtStateView  extends LinearLayout {
 				state.mode = PixelArtState.BUCKET;
 				updateFromState();
 			}});
+
+        pickermode = (ImageView)parent.findViewById(R.id.pickermode);
+        pickermode.setOnClickListener(new OnClickListener() {
+            public void onClick(View arg0) {
+                state.mode = PixelArtState.PICKER;
+                updateFromState();
+            }});
+
+        movemode = (ImageView)parent.findViewById(R.id.movemode);
+        movemode.setOnClickListener(new OnClickListener() {
+            public void onClick(View arg0) {
+                state.mode = PixelArtState.MOVE;
+                updateFromState();
+            }});
 		
 		shapeselector = (ViewGroup)parent.findViewById(R.id.shapesmenu);
 		shapescontainer = parent.findViewById(R.id.shapesholder);
@@ -226,12 +242,15 @@ public class PixelArtStateView  extends LinearLayout {
 		circlemode.setSelected(false);
 		linemode.setSelected(false);
 		bucketmode.setSelected(false);
+        pickermode.setSelected(false);
+        movemode.setSelected(false);
 		//shapeselector;
 		shapesmode.setSelected(false);
 
 		if (shapeselectoropen)  {
 			if (state.mode != PixelArtState.RECTANGLE_FILL && state.mode != PixelArtState.CIRCLE_FILL
-						&& state.mode != PixelArtState.LINE && state.mode != PixelArtState.BUCKET) {
+						&& state.mode != PixelArtState.LINE && state.mode != PixelArtState.BUCKET
+                        && state.mode != PixelArtState.PICKER && state.mode != PixelArtState.MOVE) {
 				state.mode = shapeselectorchoice; 
 			}
 		}
@@ -261,11 +280,17 @@ public class PixelArtStateView  extends LinearLayout {
 			shapeselectorchoice = state.mode;
 			shapesmode.setImageDrawable(linemode.getDrawable());
 		}
-		else if (state.mode == PixelArtState.BUCKET) {
-			bucketmode.setSelected(true);
-			shapeselectorchoice = state.mode;
-			shapesmode.setImageDrawable(bucketmode.getDrawable());
-		}
+        else if (state.mode == PixelArtState.BUCKET) {
+            bucketmode.setSelected(true);
+            shapeselectorchoice = state.mode;
+            shapesmode.setImageDrawable(bucketmode.getDrawable());
+        }
+        else if (state.mode == PixelArtState.PICKER) {
+            pickermode.setSelected(true);
+        }
+        else if (state.mode == PixelArtState.MOVE) {
+            movemode.setSelected(true);
+        }
 
 		
 		colorindicator.setBackgroundColor(state.selectedColor);
