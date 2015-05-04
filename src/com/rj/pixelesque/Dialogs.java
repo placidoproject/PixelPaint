@@ -273,21 +273,15 @@ public class Dialogs {
             public void onClick(DialogInterface dialog, int whichButton) {
                 int x = pickerx.getCurrent();
                 int y = pickery.getCurrent();
-                //p.newArt(x, y);
 
-                // ToDo - zoom tool needs to consider margins(for pixelarts that are too thin)
-                if (p.art.getWidth(p) < p.art.getWidth(p)) {
-                    Log.d("PixelArt", "editor w:" + p.width + " pixelart w:" + p.art.width);
-                    float zx = ((float) p.width / (((float) p.width / (float) p.art.width) * (float) x));
-                    Log.d("PixelArt", "x:" + x + " zoom x:" + zx + " scale:" + p.art.scale);
-                    p.art.scale = zx;
-                } else {
-                    Log.d("PixelArt", "editor h:" + p.height + " pixelart h:" + p.art.height);
-                    float zy = ((float) p.height / (((float) p.height / (float) p.art.height) * (float) y));
-                    Log.d("PixelArt", "y:" + y + " zoom y:" + zy + " scale:" + p.art.scale);
-                    p.art.scale = zy;
-                }
+				float pixelSize = p.min(p.width / p.art.width, p.height / p.art.height);
+
+				float zy = ((float) p.height / (pixelSize * (float) y));
+				float zx = ((float) p.width / (pixelSize * (float) x));
+
+				p.art.scale = p.min(zx, zy);
                 p.scheduleRedraw();
+				Log.d("PixelArt", "zx:" + zx + " zy:" + zy + " scale:" + p.art.scale);
             }
         });
         builder.setNegativeButton(R.string.zoom_button_cancel, new DialogInterface.OnClickListener() {

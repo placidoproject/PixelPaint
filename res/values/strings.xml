@@ -9,7 +9,7 @@
     <string name="menu_save">Save</string>
     <string name="menu_open">Open</string>
     <string name="menu_clear">Clear</string>
-    <string name="menu_zoom">Zoom</string>
+    <string name="menu_zoom">Zoom to Fit</string>
     <string name="menu_background">Import Background</string>
     <string name="menu_share">Share</string>
     <string name="menu_export">Export</string>
