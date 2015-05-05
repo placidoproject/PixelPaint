@@ -1,4 +1,4 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 import android.graphics.Color;
 

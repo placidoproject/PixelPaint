@@ -1,12 +1,11 @@
-package com.rj.pixelesque.shapes;
+package com.rj.pixelesqueplus.shapes;
 
 import java.util.ArrayList;
 
 import processing.core.PApplet;
 import android.graphics.Point;
-import android.util.Log;
 
-import com.rj.pixelesque.PixelArt;
+import com.rj.pixelesqueplus.PixelArt;
 import com.rj.processing.mt.Cursor;
 
 public abstract class Shape {

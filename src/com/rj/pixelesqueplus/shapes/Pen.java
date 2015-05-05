@@ -1,8 +1,8 @@
-package com.rj.pixelesque.shapes;
+package com.rj.pixelesqueplus.shapes;
 
 import processing.core.PApplet;
 
-import com.rj.pixelesque.PixelArt;
+import com.rj.pixelesqueplus.PixelArt;
 import com.rj.processing.mt.Cursor;
 
 public class Pen extends Shape {		

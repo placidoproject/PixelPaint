@@ -1,4 +1,4 @@
-package com.rj.pixelesque.shapes;
+package com.rj.pixelesqueplus.shapes;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -7,8 +7,8 @@ import java.util.Queue;
 
 import android.graphics.Point;
 
-import com.rj.pixelesque.PixelArt;
-import com.rj.pixelesque.PixelArtEditor;
+import com.rj.pixelesqueplus.PixelArt;
+import com.rj.pixelesqueplus.PixelArtEditor;
 import com.rj.processing.mt.Cursor;
 
 public class Bucket extends SuperShape {

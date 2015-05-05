@@ -34,7 +34,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 
-import com.rj.pixelesque.R;
+import com.rj.pixelesqueplus.R;
 
 public class HexSelectorView extends LinearLayout {
 

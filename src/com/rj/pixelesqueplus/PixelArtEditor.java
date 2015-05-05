@@ -1,8 +1,7 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 import java.io.File;
 
-import de.devmil.common.ui.color.ColorSelectorDialog;
 import processing.core.PApplet;
 import android.app.Dialog;
 import android.app.ProgressDialog;
@@ -16,6 +15,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Looper;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -32,14 +32,14 @@ import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.rj.pixelesque.shapes.Bucket;
-import com.rj.pixelesque.shapes.Circle;
-import com.rj.pixelesque.shapes.Line;
-import com.rj.pixelesque.shapes.Pen;
-import com.rj.pixelesque.shapes.Pencil;
-import com.rj.pixelesque.shapes.Rectangle;
-import com.rj.pixelesque.shapes.Shape;
-import com.rj.pixelesque.shapes.ShapeEditor.ShapeFactory;
+import com.rj.pixelesqueplus.shapes.Bucket;
+import com.rj.pixelesqueplus.shapes.Circle;
+import com.rj.pixelesqueplus.shapes.Line;
+import com.rj.pixelesqueplus.shapes.Pen;
+import com.rj.pixelesqueplus.shapes.Pencil;
+import com.rj.pixelesqueplus.shapes.Rectangle;
+import com.rj.pixelesqueplus.shapes.Shape;
+import com.rj.pixelesqueplus.shapes.ShapeEditor.ShapeFactory;
 import com.rj.processing.mt.Cursor;
 import com.rj.processing.mt.MTManager;
 import com.rj.processing.mt.Point;
@@ -106,10 +106,10 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		super.onCreate(savedinstance);
 		figureOutOrientation();
 		 
-		bbbar = (RelativeLayout)getLayoutInflater().inflate(com.rj.pixelesque.R.layout.buttonbar, null);
+		bbbar = (RelativeLayout)getLayoutInflater().inflate(com.rj.pixelesqueplus.R.layout.buttonbar, null);
 		this.setContentView(bbbar, new RelativeLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-		buttonbar = (PixelArtStateView)bbbar.findViewById(com.rj.pixelesque.R.id.buttonbarz);
-		ViewGroup g = (ViewGroup)bbbar.findViewById(com.rj.pixelesque.R.id.surfaceholder);
+		buttonbar = (PixelArtStateView)bbbar.findViewById(com.rj.pixelesqueplus.R.id.buttonbarz);
+		ViewGroup g = (ViewGroup)bbbar.findViewById(com.rj.pixelesqueplus.R.id.surfaceholder);
 		g.addView(surfaceView);
 	}
 	
@@ -133,9 +133,9 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	    frameRate(60);
 	    	    
 	    debug();
-	    
-	    
-	    mtManager = new MTManager();
+		Looper.prepare();
+
+		mtManager = new MTManager();
 	    mtManager.addTouchListener(this);
 
 	    mScaleDetector = new ScaleGestureDetector(this, new ScaleListener());
@@ -368,7 +368,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	void actualsetup() {
 		initialArt();
 		state  = new PixelArtState();
-	    buttonbar.setParent(findViewById(com.rj.pixelesque.R.id.layout));
+	    buttonbar.setParent(findViewById(com.rj.pixelesqueplus.R.id.layout));
 	    buttonbar.setState(state, art, this);
 	    artChangedName();
 	    scheduleRedraw();
@@ -413,8 +413,8 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		Dialog d;
 		@Override
 		protected void onPreExecute() {
-			String title = getResources().getString(com.rj.pixelesque.R.string.loading_title);
-			String text = getResources().getString(com.rj.pixelesque.R.string.loading_text);
+			String title = getResources().getString(com.rj.pixelesqueplus.R.string.loading_title);
+			String text = getResources().getString(com.rj.pixelesqueplus.R.string.loading_text);
 			d  = ProgressDialog.show(PixelArtEditor.this, title, text);
 			super.onPreExecute();
 		}
@@ -434,7 +434,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 			} catch (Exception ee) {
 				ee.printStackTrace();
 				runOnUiThread(new Runnable() { public void run() {
-					Toast.makeText(PixelArtEditor.this, com.rj.pixelesque.R.string.open_extras_failed, Toast.LENGTH_SHORT).show();
+					Toast.makeText(PixelArtEditor.this, com.rj.pixelesqueplus.R.string.open_extras_failed, Toast.LENGTH_SHORT).show();
 				}});
 			}
 			return art;
@@ -446,7 +446,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 				setArt(result);
 				artChangedName();
 			} else
-				Toast.makeText(PixelArtEditor.this, com.rj.pixelesque.R.string.open_failed, Toast.LENGTH_SHORT).show();
+				Toast.makeText(PixelArtEditor.this, com.rj.pixelesqueplus.R.string.open_failed, Toast.LENGTH_SHORT).show();
 			d.dismiss();
 			scheduleRedraw();
 		}	
@@ -460,8 +460,8 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		Dialog d;
 		@Override
 		protected void onPreExecute() {
-			String title = getResources().getString(com.rj.pixelesque.R.string.loading_title);
-			String text = getResources().getString(com.rj.pixelesque.R.string.loading_text);
+			String title = getResources().getString(com.rj.pixelesqueplus.R.string.loading_title);
+			String text = getResources().getString(com.rj.pixelesqueplus.R.string.loading_text);
 			d  = ProgressDialog.show(PixelArtEditor.this, title, text);
 			super.onPreExecute();
 		}
@@ -545,13 +545,13 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	}
 	public class ChangeName implements Runnable {
 		public void run() {
-			TextView view = (TextView)findViewById(com.rj.pixelesque.R.id.picturename);
+			TextView view = (TextView)findViewById(com.rj.pixelesqueplus.R.id.picturename);
 			if (art != null && art.name != null)  {
 				if (view != null) view.setText(art.name);
 				//setTitle("Pixelesque - "+art.name);
 				setTitle(art.name);
 			} else {
-				String title = getResources().getString(com.rj.pixelesque.R.string.new_art_title);
+				String title = getResources().getString(com.rj.pixelesqueplus.R.string.new_art_title);
 				if (view != null) view.setText(title);
 				//setTitle("Pixelesque - "+title);
 				setTitle(title);
@@ -563,7 +563,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 	@Override
 	public boolean onCreateOptionsMenu(final Menu menu) {
 	    final MenuInflater inflater = getMenuInflater();
-	    inflater.inflate(com.rj.pixelesque.R.menu.mainmenu, menu);
+	    inflater.inflate(com.rj.pixelesqueplus.R.menu.mainmenu, menu);
 	    return true;
 	}
 	
@@ -573,40 +573,40 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		if (DEBUG) Log.d("PixelArt", "menu z : "+item.getItemId());
 		
 	    switch (item.getItemId()) {
-		    case com.rj.pixelesque.R.id.main_menu_save:
+		    case com.rj.pixelesqueplus.R.id.main_menu_save:
 		        save();
 		        return true;
-		    case com.rj.pixelesque.R.id.main_menu_save_as:
+		    case com.rj.pixelesqueplus.R.id.main_menu_save_as:
 		        saveas();
 		        return true;
-		    case com.rj.pixelesque.R.id.main_menu_export:
+		    case com.rj.pixelesqueplus.R.id.main_menu_export:
 		        export();
 		        return true;
-		    case com.rj.pixelesque.R.id.main_menu_share:
+		    case com.rj.pixelesqueplus.R.id.main_menu_share:
 		        share();
 		        return true;
-		    case com.rj.pixelesque.R.id.main_menu_open:
+		    case com.rj.pixelesqueplus.R.id.main_menu_open:
 		        load();
 		        return true;
-		    case com.rj.pixelesque.R.id.main_menu_new:
+		    case com.rj.pixelesqueplus.R.id.main_menu_new:
 		        shownew();
 		        return true;
-		    case com.rj.pixelesque.R.id.main_menu_clear:
+		    case com.rj.pixelesqueplus.R.id.main_menu_clear:
 		        clear();
 		        return true;
-            case com.rj.pixelesque.R.id.main_menu_zoom:
+            case com.rj.pixelesqueplus.R.id.main_menu_zoom:
                 zoom();
                 return true;
-		    case com.rj.pixelesque.R.id.main_menu_preview:
+		    case com.rj.pixelesqueplus.R.id.main_menu_preview:
 		        togglePreview();
 		        return true;
-		    case com.rj.pixelesque.R.id.main_menu_gridtoggle:
+		    case com.rj.pixelesqueplus.R.id.main_menu_gridtoggle:
 		        toggleGrid();
 		        return true;
 //		    case com.rj.pixelesque.R.id.main_menu_background:
 //		        importBackground();
 //		        return true;
-		    case com.rj.pixelesque.R.id.main_menu_about:
+		    case com.rj.pixelesqueplus.R.id.main_menu_about:
 		    	about();
 		    	return true;
 
@@ -655,7 +655,7 @@ public class PixelArtEditor extends PApplet implements TouchListener, Drawer {
 		            art.setBackground(PixelArtEditor.this, PixelArtEditor.this, data.getData());
 		            scheduleRedraw();
 	        	} catch (Exception e) {
-	        		Toast.makeText(this, com.rj.pixelesque.R.string.custombg_failed, Toast.LENGTH_LONG).show();
+	        		Toast.makeText(this, com.rj.pixelesqueplus.R.string.custombg_failed, Toast.LENGTH_LONG).show();
 	        	}
 	        }
 

@@ -1,4 +1,4 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -7,17 +7,16 @@ import java.io.FilenameFilter;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
-import processing.core.PImage;
+
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Environment;
 import android.util.Log;
 
-import com.rj.pixelesque.ArtListFragment.ArtElement;
+import com.rj.pixelesqueplus.ArtListFragment.ArtElement;
 
 
 public class StorageUtils {

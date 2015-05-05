@@ -1,10 +1,9 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -287,9 +286,13 @@ public class PixelArtStateView  extends LinearLayout {
         }
         else if (state.mode == PixelArtState.PICKER) {
             pickermode.setSelected(true);
+			shapeselectorchoice = state.mode;
+			shapesmode.setImageDrawable(pickermode.getDrawable());
         }
         else if (state.mode == PixelArtState.MOVE) {
             movemode.setSelected(true);
+			shapeselectorchoice = state.mode;
+			shapesmode.setImageDrawable(movemode.getDrawable());
         }
 
 		

@@ -6,7 +6,7 @@
     android:layout_alignParentRight="true"
     android:scrollbars="none" >
 
-    <com.rj.pixelesque.PixelArtStateView
+    <com.rj.pixelesqueplus.PixelArtStateView
         android:id="@+id/buttonbarz"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
@@ -96,6 +96,6 @@
             android:layout_weight="1"
             android:scaleType="centerInside"
             android:src="@drawable/redobutton_bg" />
-    </com.rj.pixelesque.PixelArtStateView>
+    </com.rj.pixelesqueplus.PixelArtStateView>
 
 </LinearLayout>

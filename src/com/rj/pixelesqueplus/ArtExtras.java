@@ -1,4 +1,4 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -6,7 +6,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import processing.core.PApplet;

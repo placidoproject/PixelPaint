@@ -1,4 +1,4 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 import java.io.File;
 import java.util.ArrayList;

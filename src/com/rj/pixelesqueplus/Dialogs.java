@@ -1,4 +1,4 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -8,7 +8,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
 import android.widget.EditText;
@@ -16,7 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.rj.pixelesque.NumberPicker.OnChangedListener;
+import com.rj.pixelesqueplus.NumberPicker.OnChangedListener;
 
 public class Dialogs {
 

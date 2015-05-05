@@ -1,14 +1,10 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Bitmap.CompressFormat;
 import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -52,8 +48,8 @@ public class SaveTask extends AsyncTask<Void, Void, Boolean> {
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		String title = context.getResources().getString(com.rj.pixelesque.R.string.saving_title);
-		String text = context.getResources().getString(com.rj.pixelesque.R.string.saving_text);
+		String title = context.getResources().getString(com.rj.pixelesqueplus.R.string.saving_title);
+		String text = context.getResources().getString(com.rj.pixelesqueplus.R.string.saving_text);
 		dialog = ProgressDialog.show(context, title, text);
 	}
 	
@@ -109,7 +105,7 @@ public class SaveTask extends AsyncTask<Void, Void, Boolean> {
 		super.onPostExecute(result);
 		dialog.dismiss();
 		if (result == false) {
-			Toast.makeText(context, com.rj.pixelesque.R.string.save_failed, Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, com.rj.pixelesqueplus.R.string.save_failed, Toast.LENGTH_SHORT).show();
 		}
 		if (export) {
 			Log.d("SaveTask", "Exporting...");

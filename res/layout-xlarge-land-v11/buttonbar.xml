@@ -55,6 +55,27 @@
 	    	android:layout_alignBottom="@+id/rectanglemode"  
 	    	android:layout_alignRight="@+id/circlemode"  
 	    	/>
+		<ImageView
+			android:id="@+id/pickermode"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/pickerbutton_bg"
+			android:scaleType="centerInside"
+			android:layout_toRightOf="@+id/circlemode"
+			android:layout_alignBottom="@+id/circlemode"
+			/>
+		<ImageView
+			android:id="@+id/movemode"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/movebutton_bg"
+			android:scaleType="centerInside"
+			android:layout_below="@+id/pickermode"
+			android:layout_toRightOf="@+id/linemode"
+			android:layout_alignBottom="@+id/linemode"
+			android:layout_alignTop="@+id/linemode"
+			android:layout_alignRight="@+id/pickermode"
+			/>
 	    	
     </RelativeLayout>
     
@@ -66,7 +87,7 @@
 	    android:layout_height="match_parent"
 	    android:scrollbars="none"
 		>
-		<com.rj.pixelesque.PixelArtStateView 
+		<com.rj.pixelesqueplus.PixelArtStateView
 			android:id="@+id/buttonbarz"
 		    android:orientation="vertical"
 		    android:layout_width="wrap_content"
@@ -176,6 +197,6 @@
 		    	android:scaleType="centerInside"
 		    	android:layout_weight="1"
 		    	/>
-		</com.rj.pixelesque.PixelArtStateView>
+		</com.rj.pixelesqueplus.PixelArtStateView>
 	</LinearLayout>
 </RelativeLayout>

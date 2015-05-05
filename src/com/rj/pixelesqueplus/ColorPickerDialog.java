@@ -1,4 +1,4 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 /*
  * Copyright (C) 2007 The Android Open Source Project

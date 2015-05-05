@@ -1,7 +1,6 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
 
 public class History  {

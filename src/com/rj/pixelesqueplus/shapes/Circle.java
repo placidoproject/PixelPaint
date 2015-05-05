@@ -1,11 +1,11 @@
-package com.rj.pixelesque.shapes;
+package com.rj.pixelesqueplus.shapes;
 
 import java.util.HashMap;
 
 import processing.core.PApplet;
 import android.graphics.Point;
 
-import com.rj.pixelesque.PixelArt;
+import com.rj.pixelesqueplus.PixelArt;
 import com.rj.processing.mt.Cursor;
 
 public class Circle extends SuperShape {	

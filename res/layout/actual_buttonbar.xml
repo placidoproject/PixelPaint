@@ -13,7 +13,7 @@
 		android:scaleType="centerCrop"
 		android:background="@color/hud_background"
     	/>    
-	<com.rj.pixelesque.PixelArtStateView 
+	<com.rj.pixelesqueplus.PixelArtStateView
 		android:id="@+id/buttonbarz"
 	    android:orientation="horizontal"
 	    android:layout_width="fill_parent"
@@ -110,5 +110,5 @@
 	    	android:scaleType="centerInside"
 	    	android:layout_weight="1"
 	    	/>
-	</com.rj.pixelesque.PixelArtStateView>
+	</com.rj.pixelesqueplus.PixelArtStateView>
 </RelativeLayout>

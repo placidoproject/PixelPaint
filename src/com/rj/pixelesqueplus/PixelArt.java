@@ -1,4 +1,4 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 
-import com.rj.pixelesque.shapes.Shape;
-import com.rj.pixelesque.shapes.ShapeEditor;
+import com.rj.pixelesqueplus.shapes.Shape;
+import com.rj.pixelesqueplus.shapes.ShapeEditor;
 
 public class PixelArt {
 	public static final int MAX_BACKSTACK = 3;

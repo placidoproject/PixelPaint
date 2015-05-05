@@ -32,7 +32,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ImageView.ScaleType;
 
-import com.rj.pixelesque.R;
+import com.rj.pixelesqueplus.R;
 
 public class HsvAlphaSelectorView extends LinearLayout {
 

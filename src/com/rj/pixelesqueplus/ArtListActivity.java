@@ -1,12 +1,12 @@
-package com.rj.pixelesque;
+package com.rj.pixelesqueplus;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
-import com.rj.pixelesque.ArtListFragment.ArtElement;
-import com.rj.pixelesque.ArtListFragment.ArtItemSelectedListener;
+import com.rj.pixelesqueplus.ArtListFragment.ArtElement;
+import com.rj.pixelesqueplus.ArtListFragment.ArtItemSelectedListener;
 
 public class ArtListActivity extends FragmentActivity implements ArtItemSelectedListener {
 	public final static String PATH = "path";

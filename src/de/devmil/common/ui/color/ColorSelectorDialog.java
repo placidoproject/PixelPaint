@@ -24,7 +24,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-import com.rj.pixelesque.R;
+import com.rj.pixelesqueplus.R;
 
 public class ColorSelectorDialog extends Dialog {
 	public final static int BOTTOM = 1;
