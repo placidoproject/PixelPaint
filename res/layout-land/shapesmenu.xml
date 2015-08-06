@@ -16,50 +16,30 @@
         android:src="@drawable/bucketbutton_bg" />
 
     <ImageView
-        android:id="@+id/circlemode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/bucketmode"
-        android:layout_toRightOf="@+id/bucketmode"
-        android:scaleType="centerInside"
-        android:src="@drawable/circlebutton_bg" />
-
-    <ImageView
         android:id="@+id/rectanglemode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/bucketmode"
+        android:layout_alignBottom="@+id/bucketmode"
+        android:layout_toLeftOf="@+id/bucketmode"
         android:scaleType="centerInside"
         android:src="@drawable/rectbutton_bg" />
+
+    <ImageView
+        android:id="@+id/circlemode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rectanglemode"
+        android:layout_toLeftOf="@+id/rectanglemode"
+        android:scaleType="centerInside"
+        android:src="@drawable/circlebutton_bg" />
 
     <ImageView
         android:id="@+id/linemode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/rectanglemode"
-        android:layout_alignRight="@+id/circlemode"
-        android:layout_below="@+id/circlemode"
-        android:layout_toRightOf="@+id/rectanglemode"
+        android:layout_alignBottom="@+id/circlemode"
+        android:layout_toLeftOf="@+id/circlemode"
         android:scaleType="centerInside"
         android:src="@drawable/linebutton_bg" />
-
-    <ImageView
-        android:id="@+id/pickermode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/circlemode"
-        android:scaleType="centerInside"
-        android:src="@drawable/pickerbutton_bg" />
-
-    <ImageView
-        android:id="@+id/movemode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/pickermode"
-        android:layout_alignRight="@+id/linemode"
-        android:layout_below="@+id/linemode"
-        android:layout_toRightOf="@+id/pickermode"
-        android:scaleType="centerInside"
-        android:src="@drawable/movebutton_bg" />
 
 </RelativeLayout>

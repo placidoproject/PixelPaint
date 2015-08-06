@@ -1,6 +1,8 @@
-package com.rj.pixelesqueplus;
+package com.rj.pixelpaint;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.DialogInterface.OnClickListener;
@@ -15,7 +17,9 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout.LayoutParams;
 import android.widget.TextView;
 
-import com.rj.pixelesqueplus.NumberPicker.OnChangedListener;
+import com.rj.pixelpaint.NumberPicker.OnChangedListener;
+
+import java.io.File;
 
 public class Dialogs {
 
@@ -109,7 +113,7 @@ public class Dialogs {
 					p.export(PixelArtEditor.EXPORT_ORIGINAL, "original");
 				else if (which == 1)
 					p.export(PixelArtEditor.EXPORT_SMALL_LONGSIDE, "small");
-				else if (which == 2) 
+				else if (which == 2)
 					p.export(PixelArtEditor.EXPORT_MEDIUM_LONGSIDE, "medium");
 				else
 					p.export(PixelArtEditor.EXPORT_LARGE_LONGSIDE, "large");
@@ -214,7 +218,7 @@ public class Dialogs {
 		textcontent.setMovementMethod(LinkMovementMethod.getInstance());
 		textcontent.setText(Html.fromHtml(p.getResources().getString(R.string.about)));
 		textcontent.setLinkTextColor(Color.GREEN);
-		textcontent.setPadding(5,5,5,5);
+		textcontent.setPadding(5, 5, 5, 5);
 		textcontent.setTextSize(15);
 		builder.setView(textcontent);
 		builder.setPositiveButton(R.string.about_button_market, new DialogInterface.OnClickListener() {  
@@ -256,8 +260,8 @@ public class Dialogs {
         final NumberPicker pickerx = new NumberPicker(p);
         final TextView text = new TextView(p);
         final NumberPicker pickery = new NumberPicker(p);
-        pickerx.setRange(1, 64);
-        pickery.setRange(1, 64);
+        pickerx.setRange(1, p.art.width);
+        pickery.setRange(1, p.art.height);
         pickerx.setCurrent(p.art.width);
         pickery.setCurrent(p.art.height);
         text.setText("x");
@@ -280,7 +284,6 @@ public class Dialogs {
 
 				p.art.scale = p.min(zx, zy);
                 p.scheduleRedraw();
-				Log.d("PixelArt", "zx:" + zx + " zy:" + zy + " scale:" + p.art.scale);
             }
         });
         builder.setNegativeButton(R.string.zoom_button_cancel, new DialogInterface.OnClickListener() {
@@ -294,5 +297,58 @@ public class Dialogs {
 
         Log.d("PixelArt", "alertz shownew");
     }
-	
+
+	public static void showRename(final File file, final Context context) {
+		Log.d("PixelArt", "alertz showsaveas");
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle("Rename " + file.getName().replaceFirst("[.][^.]+$", "") + " to");
+		builder.setIcon(R.drawable.rename);
+		final EditText edit = new EditText(context);
+		edit.setHint("Pick a name");
+		builder.setView(edit);
+		builder.setPositiveButton(R.string.rename_button_ok, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				StorageUtils.renameFile(edit.getText().toString(), file, context);
+				Activity activity = (Activity) context;
+				activity.recreate();
+			}
+		});
+		builder.setNegativeButton(R.string.rename_button_cancel, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				dialog.dismiss();
+			}
+		});
+
+		AlertDialog alert = builder.create();
+		alert.show();
+
+		Log.d("PixelArt", "alertz shownew");
+	}
+
+
+	public static void showDelete(final File file, final Context context) {
+		Log.d("PixelArt", "alertz showsaveas");
+
+		AlertDialog.Builder builder = new AlertDialog.Builder(context);
+		builder.setTitle("Delete " + file.getName().replaceFirst("[.][^.]+$", "") + "?");
+		builder.setIcon(R.drawable.delete);
+		builder.setPositiveButton(R.string.delete_button_yes, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				StorageUtils.deleteFile(file, context);
+				Activity activity = (Activity) context;
+				activity.recreate();
+			}
+		});
+		builder.setNegativeButton(R.string.delete_button_no, new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				dialog.dismiss();
+			}
+		});
+
+		AlertDialog alert = builder.create();
+		alert.show();
+
+		Log.d("PixelArt", "alertz shownew");
+	}
 }

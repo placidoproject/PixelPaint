@@ -26,7 +26,7 @@ import android.widget.TabHost;
 import android.widget.TabHost.TabContentFactory;
 import android.widget.TabHost.TabSpec;
 
-import com.rj.pixelesqueplus.R;
+import com.rj.pixelpaint.R;
 
 public class ColorSelectorView extends LinearLayout {
 	private static final String HSV_TAG = "HSV";

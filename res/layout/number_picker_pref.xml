@@ -22,7 +22,7 @@
     android:padding="10dip"
     >
     
-    <com.rj.pixelesqueplus.NumberPicker
+    <com.rj.pixelpaint.NumberPicker
         android:id="@+id/pref_num_picker"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

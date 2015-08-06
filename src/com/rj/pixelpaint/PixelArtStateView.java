@@ -1,4 +1,4 @@
-package com.rj.pixelesqueplus;
+package com.rj.pixelpaint;
 
 import android.content.Context;
 import android.content.Intent;
@@ -30,10 +30,16 @@ public class PixelArtStateView  extends LinearLayout {
 	ImageView bucketmode;
     ImageView pickermode;
     ImageView movemode;
+	ViewGroup drawselector;
+	ImageView drawmode;
+	View drawcontainer;
 	ViewGroup shapeselector;
 	ImageView shapesmode;
 	View shapescontainer;
-	
+
+	boolean drawselectoropen = false;
+	int drawselectorchoice = -1;
+
 	boolean shapeselectoropen = false;
 	int shapeselectorchoice = -1;
 	
@@ -55,7 +61,6 @@ public class PixelArtStateView  extends LinearLayout {
 
 	
 	public void init() {
-		
 		pencilmode = (ImageView)parent.findViewById(R.id.pencilmode);
 		pencilmode.setOnClickListener(new OnClickListener() {
 			public void onClick(View arg0) {
@@ -113,6 +118,51 @@ public class PixelArtStateView  extends LinearLayout {
                 state.mode = PixelArtState.MOVE;
                 updateFromState();
             }});
+
+
+		drawselector = (ViewGroup)parent.findViewById(R.id.drawmenu);
+		drawcontainer = parent.findViewById(R.id.drawholder);
+		drawmode = (ImageView)findViewById(R.id.drawmode);
+		drawmode.setOnTouchListener(new OnTouchListener() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				if (event.getAction() == MotionEvent.ACTION_DOWN) {
+					v.setPressed(true);
+					drawselectoropen = true;
+					drawselector.setVisibility(View.VISIBLE);
+					RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) drawselector.getLayoutParams();
+					if (PixelArtEditor.isHorizontal()) {
+						params.topMargin = drawcontainer.getTop();
+						//params.width = shapescontainer.getWidth()*2;
+						//params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+					} else {
+						params.leftMargin = drawcontainer.getLeft();
+						params.width = drawcontainer.getWidth();
+						//params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+					}
+					//Log.d("StateView", String.format("params: width:%d height:%d marginLeft:%d ", params.width, params.height, params.leftMargin));
+					drawselector.setLayoutParams(params);
+				} else if (event.getAction() == MotionEvent.ACTION_CANCEL || event.getAction() == MotionEvent.ACTION_UP) {
+					drawselector.setVisibility(View.GONE);
+					v.setPressed(false);
+					drawselectoropen = false;
+					updateFromState();
+					return true;
+				}
+
+				int x = (int) event.getRawX();
+				int y = (int) event.getRawY();
+				for (int i = 0; i < drawselector.getChildCount(); i++) {
+					View view = drawselector.getChildAt(i);
+					selectButtonFromMovingSelectorView(view, x, y);
+				}
+				selectButtonFromMovingSelectorView(drawmode, x, y);
+
+
+				updateFromState();
+				return true;
+			}
+		});
 		
 		shapeselector = (ViewGroup)parent.findViewById(R.id.shapesmenu);
 		shapescontainer = parent.findViewById(R.id.shapesholder);
@@ -130,8 +180,8 @@ public class PixelArtStateView  extends LinearLayout {
 						//params.width = shapescontainer.getWidth()*2;
 						//params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
 					} else {
-						params.leftMargin = shapescontainer.getLeft()-shapesmode.getWidth()/2;
-						//params.width = shapescontainer.getWidth()*2;
+						params.leftMargin = shapescontainer.getLeft();//-shapesmode.getWidth()/2;
+						params.width = shapescontainer.getWidth();//*2;
 						//params.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
 					}
 					//Log.d("StateView", String.format("params: width:%d height:%d marginLeft:%d ", params.width, params.height, params.leftMargin));
@@ -233,7 +283,7 @@ public class PixelArtStateView  extends LinearLayout {
 	public void updateFromState() {
 		if (pencilmode == null) init();
 		checkHistoryButtons();
-		
+
 		erasermode.setSelected(false);
 		pointermode.setSelected(false);
 		pencilmode.setSelected(false);
@@ -243,26 +293,39 @@ public class PixelArtStateView  extends LinearLayout {
 		bucketmode.setSelected(false);
         pickermode.setSelected(false);
         movemode.setSelected(false);
+
+		//drawselector;
+		drawmode.setSelected(false);
+
+		if (drawselectoropen)  {
+			if (state.mode != PixelArtState.DRAW && state.mode != PixelArtState.ERASER
+					&& state.mode != PixelArtState.PICKER) {
+				state.mode = drawselectorchoice;
+			}
+		}
+
 		//shapeselector;
 		shapesmode.setSelected(false);
 
 		if (shapeselectoropen)  {
 			if (state.mode != PixelArtState.RECTANGLE_FILL && state.mode != PixelArtState.CIRCLE_FILL
-						&& state.mode != PixelArtState.LINE && state.mode != PixelArtState.BUCKET
-                        && state.mode != PixelArtState.PICKER && state.mode != PixelArtState.MOVE) {
+						&& state.mode != PixelArtState.LINE && state.mode != PixelArtState.BUCKET) {
 				state.mode = shapeselectorchoice; 
 			}
 		}
-				
-		
+
 		if (state.mode == PixelArtState.DRAW) {
 			pencilmode.setSelected(true);
+			drawselectorchoice = state.mode;
+			drawmode.setImageDrawable(pencilmode.getDrawable());
 		}
 		else if (state.mode == PixelArtState.PENCIL) {
 			pointermode.setSelected(true);
 		}
 		else if (state.mode == PixelArtState.ERASER) {
 			erasermode.setSelected(true);
+			drawselectorchoice = state.mode;
+			drawmode.setImageDrawable(erasermode.getDrawable());
 		}
 		else if (state.mode == PixelArtState.RECTANGLE_FILL) {
 			rectanglemode.setSelected(true);
@@ -286,13 +349,11 @@ public class PixelArtStateView  extends LinearLayout {
         }
         else if (state.mode == PixelArtState.PICKER) {
             pickermode.setSelected(true);
-			shapeselectorchoice = state.mode;
-			shapesmode.setImageDrawable(pickermode.getDrawable());
+			drawselectorchoice = state.mode;
+			drawmode.setImageDrawable(pickermode.getDrawable());
         }
         else if (state.mode == PixelArtState.MOVE) {
             movemode.setSelected(true);
-			shapeselectorchoice = state.mode;
-			shapesmode.setImageDrawable(movemode.getDrawable());
         }
 
 		

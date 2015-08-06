@@ -1,8 +1,8 @@
-package com.rj.pixelesqueplus.shapes;
+package com.rj.pixelpaint.shapes;
 
 import processing.core.PApplet;
 
-import com.rj.pixelesqueplus.PixelArt;
+import com.rj.pixelpaint.PixelArt;
 import com.rj.processing.mt.Cursor;
 
 public class Pencil extends Shape {	

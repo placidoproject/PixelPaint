@@ -1,4 +1,4 @@
-package com.rj.pixelesqueplus;
+package com.rj.pixelpaint;
 
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -19,8 +19,8 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.util.Log;
 
-import com.rj.pixelesqueplus.shapes.Shape;
-import com.rj.pixelesqueplus.shapes.ShapeEditor;
+import com.rj.pixelpaint.shapes.Shape;
+import com.rj.pixelpaint.shapes.ShapeEditor;
 
 public class PixelArt {
 	public static final int MAX_BACKSTACK = 3;
@@ -41,6 +41,9 @@ public class PixelArt {
 	public boolean showGrid = true;
 	public Uri backgroundUri;
 	public PImage background;
+
+	public boolean mirror_h = false;
+	public boolean mirror_v = false;
 
 	
 
@@ -214,7 +217,7 @@ public class PixelArt {
 		if (boxsize > outlineThresh) outline = true;
 
 		if (background != null)
-			p.image(background, topx, topy, boxsize*width, boxsize*height);
+			p.image(background, topx, topy, boxsize * width, boxsize * height);
 
 		
 		if (!outline && height * boxsize < p.height) {
@@ -236,12 +239,22 @@ public class PixelArt {
 				//}
 			}
 		}
+		if (mirror_h){
+			p.stroke(255);
+			p.line((getWidth(p)/2)+topx,topy,(getWidth(p)/2)+topx,(getBoxsize(p.width, p.height) * this.height)+topy);
+		}
+		if (mirror_v){
+			p.stroke(255);
+			p.line(topx, ((getBoxsize(p.width, p.height) * this.height) / 2)+topy, getWidth(p)+topx, ((getBoxsize(p.width, p.height) * this.height)/2)+topy);
+		}
 		if (preview) {
+			//background
 			p.stroke(127);
 			p.fill(0);
-			p.rect(p.width - width - 1, p.height - height - 1, width+1, height+1);
-			p.rect(p.width - width*3 - 2, p.height - height*2 - 1, width*2+1, height*2+1);
+			p.rect(p.width - width - 1, p.height - height - 1, width + 1, height + 1);
+			p.rect(p.width - width * 3 - 2, p.height - height * 2 - 1, width * 2 + 1, height * 2 + 1);
 			p.noStroke();
+			//actual preview
 			for (int y = 0; y < height; y++) {
 				for (int x = 0; x < width; x++) {
 					int color = workingdata[x*height+y];
@@ -250,6 +263,20 @@ public class PixelArt {
 					p.rect(p.width - width-width-width - 1 + x+x, p.height - height-height + y+y,2,2);
 				}
 			}
+			//view area
+			p.stroke(127);
+			p.fill(0, 0);
+			float pixelSize = p.min((p.width / width) * scale, (p.height / height) * scale);
+			float vtopx = topx;
+			if (vtopx > 0)
+				vtopx = 0;
+			float vwidth = p.width/pixelSize, vheight = p.height/pixelSize;
+			if (vwidth > width)
+				vwidth = width;
+			if (vheight > height)
+				vheight = height;
+			p.rect(p.width - width - 1 - (vtopx / pixelSize), p.height - height - 1 - (topy / pixelSize), vwidth + 1, vheight + 1);
+			p.rect(p.width - width * 3 - 2 - (vtopx / pixelSize) * 2, p.height - height * 2 - 1 - (topy / pixelSize) * 2, vwidth * 2 + 1, vheight * 2 + 1);
 		}
 		synchronized(shapeeditor.shapes) {
 			for (Entry<Integer,Shape> s : shapeeditor.shapes.entrySet()) {
@@ -376,6 +403,15 @@ public class PixelArt {
     public void setColor(int x, int y, int color, boolean addToHistory) {
         if (isValid(x,y)) {
             workingdata[x*height+y] = color;
+
+			//mirror
+			if (mirror_h)
+				workingdata[width*height+y-(x+1)*height] = color;
+			if (mirror_v)
+				workingdata[x*height-y+width-2] = color;
+			if (mirror_h && mirror_v)
+				workingdata[height*width-(x*height+y+1)] = color;
+
             if (addToHistory == true) history.add();
         }
         if (drawer != null) drawer.scheduleRedraw();

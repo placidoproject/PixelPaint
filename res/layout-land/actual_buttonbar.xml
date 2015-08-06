@@ -6,20 +6,35 @@
     android:layout_alignParentRight="true"
     android:scrollbars="none" >
 
-    <com.rj.pixelesqueplus.PixelArtStateView
+    <com.rj.pixelpaint.PixelArtStateView
         android:id="@+id/buttonbarz"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:background="@color/hud_background"
         android:orientation="vertical" >
 
-        <ImageView
-            android:id="@+id/pencilmode"
+        <RelativeLayout
+            android:id="@+id/drawholder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:scaleType="centerInside"
-            android:src="@drawable/pencilbutton_bg" />
+            android:layout_weight="1" >
+
+            <ImageView
+                android:id="@+id/drawmode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/drawbutton_bg" />
+
+            <ImageView
+                android:id="@+id/drawmode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/more" />
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@+id/shapesholder"
@@ -45,12 +60,12 @@
         </RelativeLayout>
 
         <ImageView
-            android:id="@+id/erasermode"
+            android:id="@+id/movemode"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:scaleType="centerInside"
-            android:src="@drawable/eraserbutton_bg" />
+            android:src="@drawable/movebutton_bg" />
 
         <ImageView
             android:id="@+id/pointermode"
@@ -66,6 +81,11 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" >
 
+            <View
+                android:id="@+id/colorindicator"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerInParent="true" />
             <ImageView
                 android:id="@+id/colorpicker"
                 android:layout_width="wrap_content"
@@ -74,11 +94,6 @@
                 android:scaleType="centerInside"
                 android:src="@drawable/colorbutton_bg" />
 
-            <View
-                android:id="@+id/colorindicator"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_centerInParent="true" />
         </RelativeLayout>
 
         <ImageView
@@ -96,6 +111,6 @@
             android:layout_weight="1"
             android:scaleType="centerInside"
             android:src="@drawable/redobutton_bg" />
-    </com.rj.pixelesqueplus.PixelArtStateView>
+    </com.rj.pixelpaint.PixelArtStateView>
 
 </LinearLayout>

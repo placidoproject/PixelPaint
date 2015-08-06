@@ -1,4 +1,4 @@
-package com.rj.pixelesqueplus;
+package com.rj.pixelpaint;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -64,6 +64,8 @@ public class ArtListFragment extends Fragment {
 		});
 		adapter = new ArtAdapter(getActivity(), 0);
 		gridview.setAdapter(adapter);
+
+		registerForContextMenu(gridview);
 		//File path = new File(getActivity().getFilesDir(), "saves");
 		new ImageListLoader().execute();
 	}
@@ -71,7 +73,7 @@ public class ArtListFragment extends Fragment {
 	public void setListener(ArtItemSelectedListener listen) {
 		this.listener = listen;
 	}
-		
+
 	public class ArtAdapter extends ArrayAdapter<ArtElement> {
 
 		@Override

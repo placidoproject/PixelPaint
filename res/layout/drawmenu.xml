@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <RelativeLayout 
+        xmlns:android="http://schemas.android.com/apk/res/android"
+	   	android:orientation="vertical"
+		android:visibility="gone"
+		android:background="@color/hud_background">
+	    <ImageView
+	    	android:id="@+id/pencilmode"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/pencilbutton_bg"
+	    	android:scaleType="centerInside"
+	    	/>
+	    <ImageView
+	    	android:id="@+id/erasermode"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:src="@drawable/eraserbutton_bg"
+	    	android:scaleType="centerInside"
+	    	android:layout_below="@+id/pencilmode"
+	    	android:layout_alignRight="@+id/pencilmode"
+	    	/>
+        <ImageView
+            android:id="@+id/pickermode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pickerbutton_bg"
+            android:scaleType="centerInside"
+			android:layout_below="@+id/erasermode"
+			android:layout_alignRight="@+id/erasermode"
+			/>
+	    	
+    </RelativeLayout>

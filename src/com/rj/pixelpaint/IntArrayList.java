@@ -1,4 +1,4 @@
-package com.rj.pixelesqueplus;
+package com.rj.pixelpaint;
 
 import java.util.AbstractList;
 import java.util.List;

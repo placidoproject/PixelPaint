@@ -1,4 +1,4 @@
-package com.rj.pixelesqueplus;
+package com.rj.pixelpaint;
 
 import android.content.Context;
 import android.util.AttributeSet;

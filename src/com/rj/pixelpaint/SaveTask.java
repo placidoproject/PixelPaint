@@ -1,4 +1,4 @@
-package com.rj.pixelesqueplus;
+package com.rj.pixelpaint;
 
 import java.io.File;
 
@@ -39,7 +39,7 @@ public class SaveTask extends AsyncTask<Void, Void, Boolean> {
 		}
 		if (name == null) {
 			String time = System.currentTimeMillis()+"";
-			name = "Pixelesque-"+time.substring(time.length()-5);
+			name = "PixelPaint-"+time.substring(time.length()-5);
 		}
 		this.location.mkdirs();
 		file = new File(this.location, name+".png");
@@ -48,8 +48,8 @@ public class SaveTask extends AsyncTask<Void, Void, Boolean> {
 	@Override
 	protected void onPreExecute() {
 		super.onPreExecute();
-		String title = context.getResources().getString(com.rj.pixelesqueplus.R.string.saving_title);
-		String text = context.getResources().getString(com.rj.pixelesqueplus.R.string.saving_text);
+		String title = context.getResources().getString(com.rj.pixelpaint.R.string.saving_title);
+		String text = context.getResources().getString(com.rj.pixelpaint.R.string.saving_text);
 		dialog = ProgressDialog.show(context, title, text);
 	}
 	
@@ -105,7 +105,7 @@ public class SaveTask extends AsyncTask<Void, Void, Boolean> {
 		super.onPostExecute(result);
 		dialog.dismiss();
 		if (result == false) {
-			Toast.makeText(context, com.rj.pixelesqueplus.R.string.save_failed, Toast.LENGTH_SHORT).show();
+			Toast.makeText(context, com.rj.pixelpaint.R.string.save_failed, Toast.LENGTH_SHORT).show();
 		}
 		if (export) {
 			Log.d("SaveTask", "Exporting...");

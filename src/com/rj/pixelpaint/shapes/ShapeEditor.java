@@ -1,11 +1,11 @@
-package com.rj.pixelesqueplus.shapes;
+package com.rj.pixelpaint.shapes;
 
 import java.util.HashMap;
 import java.util.Map.Entry;
 
 import processing.core.PApplet;
 
-import com.rj.pixelesqueplus.PixelArt;
+import com.rj.pixelpaint.PixelArt;
 import com.rj.processing.mt.Cursor;
 
 public class ShapeEditor {

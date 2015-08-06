@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="hello">Hello World, PixelArt!</string>
-    <string name="app_name">PixelesquePlus</string>
+    <string name="app_name">PixelPaint</string>
     
     <string name="new_art_title">New Pixel Art</string>
     
@@ -16,6 +16,7 @@
     <string name="menu_saveas">Save As</string>
     <string name="menu_togglepreview">Toggle Preview</string>
     <string name="menu_togglegrid">Toggle Grid</string>
+    <string name="menu_config">Config</string>
     <string name="menu_about">About</string>
     
     <string name="loading_title">Loading...</string>
@@ -45,6 +46,12 @@
     <string name="zoom_title">Pick a size</string>
     <string name="zoom_button_set">Set Zoom</string>
     <string name="zoom_button_cancel">Cancel</string>
+
+    <string name="rename_button_ok">Ok</string>
+    <string name="rename_button_cancel">Cancel</string>
+
+    <string name="delete_button_yes">Yes</string>
+    <string name="delete_button_no">No</string>
     
     <string name="exportcustom_title">Pick a size to export to</string>
     <string name="exportcustom_button_export">Export</string>
@@ -60,5 +67,5 @@
     <string name="about_title">About PixelesquePlus</string>
     <string name="about_button_market">Market</string>
     <string name="about_button_ok">Ok</string>
-    <string name="about">PixelesquePlus is a fork of &lt;a href=&quot;http://github.com/rjmarsan/Pixelesque&quot;&gt;Pixelesque&lt;/a&gt; originaly made by RJ Marsan.  It\'s 100% ad &amp; cost free, and &lt;a href=&quot;http://github.com/placidoproject/PixelesquePlus&quot;&gt;open source&lt;/a&gt;.</string>
+    <string name="about">PixelPaint is a fork of &lt;a href=&quot;http://github.com/rjmarsan/Pixelesque&quot;&gt;Pixelesque&lt;/a&gt; originaly made by RJ Marsan.  It\'s 100% ad &amp; cost free, and &lt;a href=&quot;http://github.com/placidoproject/PixelPaint&quot;&gt;open source&lt;/a&gt;.</string>
 </resources>

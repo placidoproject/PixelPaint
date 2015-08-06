@@ -1,9 +1,9 @@
-package com.rj.pixelesqueplus.shapes;
+package com.rj.pixelpaint.shapes;
 
 import processing.core.PApplet;
 import android.graphics.Point;
 
-import com.rj.pixelesqueplus.PixelArt;
+import com.rj.pixelpaint.PixelArt;
 import com.rj.processing.mt.Cursor;
 
 public abstract class SuperShape extends Shape {	

@@ -1,4 +1,4 @@
-package com.rj.pixelesqueplus;
+package com.rj.pixelpaint;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -15,8 +15,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Bitmap.CompressFormat;
 import android.os.Environment;
 import android.util.Log;
+import android.widget.Toast;
 
-import com.rj.pixelesqueplus.ArtListFragment.ArtElement;
+import com.rj.pixelpaint.ArtListFragment.ArtElement;
 
 
 public class StorageUtils {
@@ -29,7 +30,7 @@ public class StorageUtils {
         if (android.os.Environment.getExternalStorageState().equals(
                 android.os.Environment.MEDIA_MOUNTED)){
             File sdCard = Environment.getExternalStorageDirectory();
-            exportloc = new File (sdCard.getAbsolutePath(), "pixelesque");
+            exportloc = new File (sdCard.getAbsolutePath(), "pixelpaint");
             exportloc.mkdirs();
         }else{
             exportloc = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES);
@@ -115,6 +116,41 @@ public class StorageUtils {
 		
 		String path = prefs.getString(RECENTLY_OPENED, "");
 		return path;
+	}
+
+	public static void deleteFile(File file, Context context) {
+		try {
+			String path = file.getPath();
+			boolean deleted = file.delete();
+
+			if (deleted && getLastOpenedFile(context).equals(path)){
+				SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, 0);
+				SharedPreferences.Editor edit = prefs.edit();
+				edit.remove(RECENTLY_OPENED);
+				edit.commit();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void renameFile(String name, File file, Context context) {
+		try {
+			String path = file.getPath();
+
+			File folder = getSaveDirectory(context);
+			File newname = new File(folder, name + ".png");
+			if(!newname.exists()) {
+				boolean renamed = file.renameTo(newname);
+
+				if (renamed && getLastOpenedFile(context).equals(path)) {
+					setLastOpened(newname.getPath(), context);
+				}
+			} else
+				Toast.makeText(context, "File named " + name + " already exists", Toast.LENGTH_LONG).show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

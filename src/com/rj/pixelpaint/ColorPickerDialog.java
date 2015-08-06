@@ -1,4 +1,4 @@
-package com.rj.pixelesqueplus;
+package com.rj.pixelpaint;
 
 /*
  * Copyright (C) 2007 The Android Open Source Project

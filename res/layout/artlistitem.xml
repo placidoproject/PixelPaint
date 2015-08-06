@@ -3,7 +3,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="100dp"
-    >
+	>
     <RelativeLayout
         android:layout_width="match_parent"
 	    android:layout_height="100dp"
@@ -27,6 +27,8 @@
 	    	android:textColor="#aaa"
 	    	android:layout_centerVertical="true"
 	    	android:layout_toRightOf="@+id/thumb"
+			android:singleLine="true"
 	     />
+
      </RelativeLayout>
 </LinearLayout>

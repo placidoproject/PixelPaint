@@ -1,4 +1,4 @@
-package com.rj.pixelesqueplus;
+package com.rj.pixelpaint;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;

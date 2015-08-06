@@ -24,7 +24,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
-import com.rj.pixelesqueplus.R;
+import com.rj.pixelpaint.R;
 
 public class ColorSelectorActivity extends Activity {
 	public final static String COLOR = "color";

@@ -32,7 +32,7 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
-import com.rj.pixelesqueplus.R;
+import com.rj.pixelpaint.R;
 
 public class HsvColorValueView extends FrameLayout {
 	private Paint paint;

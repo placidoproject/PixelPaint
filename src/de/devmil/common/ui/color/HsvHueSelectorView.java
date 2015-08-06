@@ -25,7 +25,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ImageView.ScaleType;
 
-import com.rj.pixelesqueplus.R;
+import com.rj.pixelpaint.R;
 
 public class HsvHueSelectorView extends LinearLayout {
 

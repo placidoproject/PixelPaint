@@ -23,7 +23,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.rj.pixelesqueplus.R;
+import com.rj.pixelpaint.R;
 
 public class HsvSelectorView extends LinearLayout {
 

@@ -31,7 +31,7 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.rj.pixelesqueplus.R;
+import com.rj.pixelpaint.R;
 
 public class HistorySelectorView extends LinearLayout {
 	private static final String PREFS_NAME = HistorySelectorView.class.getPackage()+".RECENT_COLORS";

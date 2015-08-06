@@ -12,6 +12,45 @@
     	android:layout_below="@+id/topbar"
     	android:background="#199"
     />
+
+	<RelativeLayout
+		android:id="@+id/drawmenu"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:visibility="gone"
+		android:background="@color/hud_background"
+		android:layout_above="@+id/scroll_buttonbarz">
+		<ImageView
+			android:id="@+id/pickermode"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/pickerbutton_bg"
+			android:scaleType="centerInside"
+			android:adjustViewBounds="true"
+			/>
+		<ImageView
+			android:id="@+id/erasermode"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/eraserbutton_bg"
+			android:scaleType="centerInside"
+			android:layout_below="@+id/pickermode"
+			android:layout_alignRight="@+id/pickermode"
+			android:adjustViewBounds="true"
+			/>
+		<ImageView
+			android:id="@+id/pencilmode"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/pencilbutton_bg"
+			android:scaleType="centerInside"
+			android:layout_below="@+id/erasermode"
+			android:layout_alignRight="@+id/erasermode"
+			android:adjustViewBounds="true"
+			/>
+
+	</RelativeLayout>
     
     <RelativeLayout 
 	   	android:id="@+id/shapesmenu"
@@ -22,11 +61,12 @@
 		android:background="@color/hud_background"
 	   	android:layout_above="@+id/scroll_buttonbarz">
 	    <ImageView
-	    	android:id="@+id/bucketmode"
+	    	android:id="@+id/linemode"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:src="@drawable/bucketbutton_bg"
+	    	android:src="@drawable/linebutton_bg"
 	    	android:scaleType="centerInside"
+			android:adjustViewBounds="true"
 	    	/>
 	    <ImageView
 	    	android:id="@+id/circlemode"
@@ -34,9 +74,9 @@
 	    	android:layout_height="wrap_content"
 	    	android:src="@drawable/circlebutton_bg"
 	    	android:scaleType="centerInside"
-	    	android:layout_toRightOf="@+id/bucketmode"
-	    	android:layout_alignBottom="@+id/bucketmode" 
-	    	android:layout_alignTop="@+id/bucketmode"
+			android:layout_below="@+id/linemode"
+			android:layout_alignRight="@+id/linemode"
+			android:adjustViewBounds="true"
 	    	/>
 	    <ImageView
 	    	android:id="@+id/rectanglemode"
@@ -44,41 +84,20 @@
 	    	android:layout_height="wrap_content"
 	    	android:src="@drawable/rectbutton_bg"
 	    	android:scaleType="centerInside"
-	    	android:layout_below="@+id/bucketmode"
+			android:layout_below="@+id/circlemode"
+			android:layout_alignRight="@+id/circlemode"
+			android:adjustViewBounds="true"
 	    	/>
 	    <ImageView
-	    	android:id="@+id/linemode"
+	    	android:id="@+id/bucketmode"
 	    	android:layout_width="wrap_content"
 	    	android:layout_height="wrap_content"
-	    	android:src="@drawable/linebutton_bg"
+	    	android:src="@drawable/bucketbutton_bg"
 	    	android:scaleType="centerInside"
-	    	android:layout_below="@+id/circlemode"
-	    	android:layout_toRightOf="@+id/rectanglemode"
-	    	android:layout_alignBottom="@+id/rectanglemode"  
-	    	android:layout_alignTop="@+id/rectanglemode"  
-	    	android:layout_alignRight="@+id/circlemode"  
+			android:layout_below="@+id/rectanglemode"
+			android:layout_alignRight="@+id/rectanglemode"
+			android:adjustViewBounds="true"
 	    	/>
-		<ImageView
-			android:id="@+id/pickermode"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/pickerbutton_bg"
-			android:scaleType="centerInside"
-			android:layout_toRightOf="@+id/circlemode"
-			android:layout_alignBottom="@+id/circlemode"
-			/>
-		<ImageView
-			android:id="@+id/movemode"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
-			android:src="@drawable/movebutton_bg"
-			android:scaleType="centerInside"
-			android:layout_below="@+id/pickermode"
-			android:layout_toRightOf="@+id/linemode"
-			android:layout_alignBottom="@+id/linemode"
-			android:layout_alignTop="@+id/linemode"
-			android:layout_alignRight="@+id/pickermode"
-			/>
 	    	
     </RelativeLayout>
     
@@ -98,22 +117,37 @@
 	    	android:src="@drawable/bottombar_bg"
 			android:scaleType="centerCrop"
 	    	/>    
-		<com.rj.pixelesqueplus.PixelArtStateView
+		<com.rj.pixelpaint.PixelArtStateView
 			android:id="@+id/buttonbarz"
 		    android:orientation="horizontal"
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    >
 
+			<RelativeLayout
+				android:id="@+id/drawholder"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_weight="1"
+				>
 
-		    <ImageView
-		    	android:id="@+id/pencilmode"
-		    	android:layout_width="wrap_content"
-		    	android:layout_height="wrap_content"
-		    	android:src="@drawable/pencilbutton_bg"
-		    	android:scaleType="centerInside"
-		    	android:layout_weight="1"
-		    	/>
+				<ImageView
+					android:id="@+id/drawmode"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@drawable/drawbutton_bg"
+					android:scaleType="centerInside"
+					android:layout_centerInParent="true"
+					/>
+				<ImageView
+					android:id="@+id/drawmode"
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:src="@drawable/more"
+					android:scaleType="centerInside"
+					android:layout_centerInParent="true"
+					/>
+			</RelativeLayout>
 
 		   	<RelativeLayout
 		   		android:id="@+id/shapesholder"
@@ -141,29 +175,35 @@
 		    </RelativeLayout>
 
 		    <ImageView
-		    	android:id="@+id/erasermode"
+		    	android:id="@+id/movemode"
 		    	android:layout_width="wrap_content"
 		    	android:layout_height="wrap_content"
-		    	android:src="@drawable/eraserbutton_bg"
+		    	android:src="@drawable/movebutton_bg"
 		    	android:scaleType="centerInside"		    	
 		    	android:layout_weight="1"
 		    	/>	
-		    	
+
  		   	<ImageView
 		    	android:id="@+id/pointermode"
 		    	android:layout_width="wrap_content"
 		    	android:layout_height="wrap_content"
 		    	android:src="@drawable/penbutton_bg"
-		    	android:scaleType="centerInside"		    	
+		    	android:scaleType="centerInside"
 		    	android:layout_weight="1"
 		    	android:visibility="gone"
-		    	/>  
+		    	/>
 		    		
 		   	<RelativeLayout
 		    	android:layout_width="wrap_content"
 		    	android:layout_height="wrap_content"
 		    	android:layout_weight="1"
 			>
+				<View
+					android:id="@+id/colorindicator"
+					android:layout_width="25dp"
+					android:layout_height="25dp"
+					android:layout_centerInParent="true"
+					/>
 				<ImageView
 			    	android:id="@+id/colorpicker" 
 			    	android:layout_width="wrap_content"
@@ -172,12 +212,6 @@
 		    		android:scaleType="centerInside"		
 		    		android:layout_centerInParent="true"		    	
  			    	/>
-			    <View
-			    	android:id="@+id/colorindicator"
-			    	android:layout_width="25dp"
-			    	android:layout_height="25dp"
-			    	android:layout_centerInParent="true"
-			    		/>
 		    </RelativeLayout>
 		    
 		    <ImageView
@@ -187,7 +221,7 @@
 		    	android:src="@drawable/undobutton_bg"
 		    	android:scaleType="centerInside"		    	
 		    	android:layout_weight="1"
-		    	/>	
+		    	/>
 			<ImageView
 		    	android:id="@+id/redo"
 		    	android:layout_width="wrap_content"
@@ -196,6 +230,6 @@
 		    	android:scaleType="centerInside"
 		    	android:layout_weight="1"
 		    	/>
-		</com.rj.pixelesqueplus.PixelArtStateView>
+		</com.rj.pixelpaint.PixelArtStateView>
 	</RelativeLayout>
 </RelativeLayout>
